@@ -1,7 +1,7 @@
 ---
-openshift_openstack_clusterid: "{{ lookup('env', 'clusterid') }}"
-openshift_openstack_public_dns_domain: "{{ lookup('env', 'public_dns_domain') }}"
-openshift_openstack_dns_nameservers: ["{{ lookup('env', 'dns_nameservers')|default('1.1.1.1', true) }}"]
+openshift_openstack_clusterid: "{{ lookup('env', 'CLUSTERID') }}"
+openshift_openstack_public_dns_domain: "{{ lookup('env', 'PUBLIC_DNS_DOMAIN') }}"
+openshift_openstack_dns_nameservers: ["{{ lookup('env', 'DNS_NAMESERVERS')|default('1.1.1.1', true) }}"]
 
 # # Used Hostnames
 # # - set custom hostnames for roles by uncommenting corresponding lines
@@ -191,7 +191,7 @@ openshift_openstack_pool_end: "192.168.99.254"
 
 # NOTE(shadower): Do not change this value. The Ansible user is currently
 # hardcoded to `openshift`.
-ansible_user: openshift
+ansible_user: "{{ lookup('env', 'ANSIBLE_USER') }}"
 
 # Resolve heat stack outputs. Disabling outputs helps stack scalability. (default: True)
 #openshift_openstack_resolve_heat_outputs: True
@@ -205,4 +205,4 @@ ansible_user: openshift
 
 ## cloud config
 openshift_openstack_disable_root: true
-openshift_openstack_user: cloud-user
+openshift_openstack_user: "{{ lookup('env', 'OS_USERNAME') }}"
