@@ -13,7 +13,7 @@ openshift_openstack_dns_nameservers: ["{{ lookup('env', 'DNS_NAMESERVERS')|defau
 #openshift_openstack_etcd_hostname: "etcd"
 
 openshift_openstack_keypair_name: "{{ lookup('env', 'OS_KEYPAIR') }}"
-openshift_openstack_external_network_name: "public"
+openshift_openstack_external_network_name: "{{ lookup('env', 'EXTERNAL_NETWORK_NAME') }}"
 #openshift_openstack_private_network_name:  "openshift-ansible-{{ openshift_openstack_stack_name }}-net"
 # # A dedicated Neutron network name for containers data network
 # # Configures the data network to be separated from openshift_openstack_private_network_name
@@ -162,11 +162,11 @@ openshift_openstack_docker_volume_size: "15"
 
 
 # The Classless Inter-Domain Routing (CIDR) for the OpenStack VM subnet.
-openshift_openstack_subnet_cidr: "192.168.99.0/24"
+openshift_openstack_subnet_cidr: "{{ lookup('env', 'OS_SUBNET_CIDR') }}"
 # The starting IP address for the OpenStack subnet allocation pool.
-openshift_openstack_pool_start: "192.168.99.3"
+openshift_openstack_pool_start: "{{ lookup('env', '	OS_SUBNET_POOL_START') }}"
 # The ending IP address for the OpenStack subnet allocation pool.
-openshift_openstack_pool_end: "192.168.99.254"
+openshift_openstack_pool_end: "{{ lookup('env', 'OS_SUBNET_POOL_END') }}"
 
 ## Red Hat subscription using user/password
 #rhsub_user: '<username>'
